@@ -15,6 +15,20 @@ jobs:
           persist-credentials: false
           submodules: true
 
+      - name: Commit
+        run: |
+          git config --local user.email "lyuzhi.pan@gmail.com"
+          git config --local user.name "Dup4"
+          git submodule update --recursive --remote
+          git add .
+          git commit -m "Update Submodule" -a
+      
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ github.ref }}
+
       - name: Set up Node.js 14.x
         uses: actions/setup-node@v1
         with:
