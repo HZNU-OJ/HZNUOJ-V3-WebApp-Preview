@@ -1,0 +1,30 @@
+name: Preview
+
+on:
+  workflow_dispatch:
+  repository_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  preview:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2.3.1 # If you're using actions/checkout@v2 you must set persist-credentials to false in most cases for the deployment to work correctly.
+        with:
+          persist-credentials: false
+          submodules: true
+
+      - name: Commit
+        run: |
+          git config --local user.email "lyuzhi.pan@gmail.com"
+          git config --local user.name "Dup4"
+          git submodule update --recursive --remote
+          git add .
+          git commit -m "Update Submodule" -a
+      
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ github.ref }}
