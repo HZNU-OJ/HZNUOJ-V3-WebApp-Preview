@@ -30,7 +30,7 @@ jobs:
           sed -i "s|baidu: \"\"|baidu: \"${{ secrets.BAIDU_ANALYTICS_ID }}\"|" customConfig.ts 
           cat customConfig.ts
           bash scripts/get_amazeui.sh
-          npm installs
+          npm install
           npm run build
 
       - name: Minify HTML Index
