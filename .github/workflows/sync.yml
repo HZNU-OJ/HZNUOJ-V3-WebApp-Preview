@@ -28,3 +28,11 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           branch: ${{ github.ref }}
+  
+      - name: Invoke workflow in another repo with inputs
+        uses: benc-uk/workflow-dispatch@v1
+        with:
+          workflow: Preview
+          repo: HZNU-OJ/HZNUOJ-V3-WebApp-Preview
+          token: ${{ secrets.GITHUB_TOKEN }}
+
