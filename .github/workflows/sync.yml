@@ -44,7 +44,7 @@ jobs:
           bash scripts/get_amazeui.sh
           yarn
           yarn build
-          sed -i "s|</body>|</body>\n<script src=\"https://v3.hznuoj.com/api/cors/xdomain.min.js\" data-slave=\"https://v3.hznuoj.com/api/cors/xdomain.html\"></script>|" index.html
+          sed -i "s|</body>|</body>\n<script src=\"https://v3.hznuoj.com/api/cors/xdomain.min.js\" data-slave=\"https://v3.hznuoj.com/api/cors/xdomain.html\"></script>|" dist/index.html
 
       - name: Minify HTML Index
         uses: Dup4/minify-html-action@v9
